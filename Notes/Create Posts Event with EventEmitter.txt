@@ -1,0 +1,121 @@
+first we need to import feature from angular componet  in ts file
+
+import { Component ,EventEmitter} from "@angular/core";
+
+then we need to create a EventEmitter and emited.
+
+After that we need to listen that event , for that we need to add a decorator 
+called Output and then this event will be listen outside from the component it meen Parent component (app.component.html)
+
+we need to add data binding for app-post-create selector tag  in app.componet.html 
+which is parrent onPostAdded function declered in app.componet.ts
+
+----------------------------------------------------------------- Post-create.componet.ts
+import { Component ,EventEmitter, Output} from "@angular/core";
+
+@Component({
+  selector: 'app-post-create',
+  templateUrl : './post-create.componet.html',
+  styleUrls: ['./post-create.component.css']
+})
+export class PostCreateComponent {
+    enteredTitle = ''
+    enteredContent = ''
+    newPost = 'No CONTENT'
+    @Output() postCreated = new EventEmitter();
+
+    onAddPost(){
+      const post = {
+        title: this.enteredTitle,
+        content: this.enteredContent
+      }
+      this.postCreated.emit(post)
+    }
+}
+------------------------------------------------------
+
+Parent
+------------------------------------------------App.componet.ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  posts = []
+
+  onPostAdded(post){
+    this.posts.push(post)
+  }
+}
+
+------------------------------------------------------ app.componet.html
+<app-header></app-header>
+
+<main>
+  <app-post-create (postCreated="onPostAdded($event)")></app-post-create>
+  <app-post-list></app-post-list>
+</main>
+
+
+
+
+After that we need to bind it with post-list-component tag componet to able to display the data
+
+we need import Input Decorator and modify the selector
+
+import { Component, Input } from "@angular/core";
+
+---------Post-list-component.ts----------------
+@Component({
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.css']
+})
+export class PostListComponet {
+  // posts = [
+  //   {title: '1', content: '2'},
+  //   {title: '2', content: '4'},
+  //   {title: '3', content: '5'}
+
+  // ]
+  @Input() posts = []
+}
+
+app-componet-ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  storedPosts = []
+
+  onPostAdded(post){
+    this.storedPosts.push(post)
+  }
+}
+
+
+app-component.html
+<app-header></app-header>
+
+<main>
+  <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
+  <app-post-list [posts] = "storedPosts"></app-post-list>
+</main>
+
+
+STEPS Ussing EventEmitter 
+
+- we need to import EventEmitter decorator 
+- declare new EventEmiter as example posteCreated = new EventEmiter()
+- import Output directive to make the event listen outside of the component @Output() postCreated
+- we need import Import decorat for the component which will receive the data
+- After that we need to modife parrent html and specifict selector tag of the compoent and ts compenent as well
+
+

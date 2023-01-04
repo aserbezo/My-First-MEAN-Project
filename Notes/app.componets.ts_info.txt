@@ -1,0 +1,22 @@
+APP folder 
+
+app.component.ts
+
+each componet has :
+-app.componet.ts file
+-app.componet.html file
+-app.component.css file
+
+-app.component.ts :
+Line 1: The import of the Component class that is defined in the module @angular/core is being done in this line.
+Lines 3-7: The reference to the selector, templateUrl, and styleUrls are given in the declarator. 
+The selector is a tag that is used to be placed in the index.html file.
+The Component decorator allows the user to tag a class as an Angular component.
+
+Selector identifies the directive in the template and triggers the instantiation of the respective directive.
+TemplateUrl is the relative or the absolute path of the template file for an Angular component.
+StyleUrls are the relative or absolute paths containing CSS stylesheets for the component. 
+There can be one or more URLs in the component decorator.
+
+Lines 8-10: The AppComponent class has a title variable, which is used to display the application’s title in the browser. 
+

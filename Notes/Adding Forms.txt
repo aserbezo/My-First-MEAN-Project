@@ -1,0 +1,61 @@
+
+HTML 
+# postForm localReferance 
+<mat-card>
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+    <mat-form-field>
+      <input
+      matInput type="text"
+      name="title"
+      ngModel
+      required
+      minlength="3"
+      #title="ngModel">
+      <mat-error *ngIf="title.invalid">Please enter a post title</mat-error>
+    </mat-form-field>
+  <mat-form-field>
+    <textarea  rows="6"
+    matInput
+    name="content"
+    ngModel
+    required
+    #content="ngModel"></textarea>
+    <mat-error *ngIf="content.invalid">Please enter a content</mat-error>
+  </mat-form-field>
+  <button mat-raised-button
+  color='primary'
+  type="submit">Save Post</button>
+  </form>
+
+</mat-card>
+
+TSS
+import { Component ,EventEmitter, Output} from "@angular/core";
+import { NgForm } from "@angular/forms";
+
+import { Post } from '../post.models'
+
+@Component({
+  selector: 'app-post-create',
+  templateUrl : './post-create.componet.html',
+  styleUrls: ['./post-create.component.css']
+})
+export class PostCreateComponent {
+    enteredTitle = ''
+    enteredContent = ''
+    newPost = 'No CONTENT'
+    @Output() postCreated = new EventEmitter<Post>();
+
+    onAddPost(form: NgForm){
+      if (form.invalid){
+        return
+      }
+      const post = {
+        title: form.value.title,
+        content: form.value.content
+      }
+      this.postCreated.emit(post)
+    }
+}
+
+

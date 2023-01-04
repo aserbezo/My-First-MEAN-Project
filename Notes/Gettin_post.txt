@@ -1,0 +1,23 @@
+Dependenci Injection = to get service to the component 
+
+We need to create a seperate ts file post.service.ts
+
+import { Post } from "./post.models";
+
+
+export class PostsService{
+ private posts: Post[] = []
+
+ getPosts(){
+   return [...this.posts]
+ }
+
+ addPost(title:string,content:string){
+   const post: Post = {title: title , content: content }
+   this.posts.push(post)
+
+ }
+}
+
+we created that file in order to able to combine the get post function
+

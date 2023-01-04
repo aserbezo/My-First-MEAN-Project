@@ -1,0 +1,43 @@
+what is MEAN ? 
+
+M - MongoDB
+E - Express 
+A - Angular
+N - Node
+
+Angular is client side framework which allows you to build Single-Page-Applications(SPAs)
+
+Angular job is to render UI (user interface) with Dynamic data and update the UI. Handle the user Input and comunicate with Backand Services
+
+
+What is Node ? 
+
+A server side Library , Javascript on the Server-side
+
+Listen to Request and Send Responses (example Angular app can request to fetch all the post , and node js can handle the request , 
+reach to the database and send response with all posts) 
+
+Node Js execute server-side Logic (example authentiction and autorization)
+
+Node Js interact with Database and FIles , because Angular is not posssible to do that.
+
+You could connect to the database with Angular , but it will be unsecure because of the develope browser and data can be seen 
+
+for Node JS alternative is PHP, Ruby on Rails , Java etc is rarely used Standalone? 
+
+
+What is Express ? 
+
+A node framework which simplifiles writing Server-side Code and Logic 
+
+Express JS is based on Node and offers same functionalities and more , it is also a middleware-based: Funnel Requests through Functions 
+
+Including Routing, View-Rendering and More
+
+What is MongoDB ? 
+
+A NoSql Database which stores Documents in Collections (instead of Records in tables as in SQL)
+
+it stored Application Data (users , products and etc)
+
+Enforce no Data Schema or Relations 

@@ -1,0 +1,25 @@
+
+Make sure you add the --strict false flag when running ng new (e.g. run ng new my-project --strict false) in the next lecture.
+
+Thereafter, this tool will ask you two questions:
+
+1) Do you want to use the Angular Router? => Choose "No Router"
+
+2) Which CSS pre-processor do you want to use? => Choose "CSS"
+
+1 Make sure you have installed Node JS  - node --version 
+2. Install angular CLI tool  we use npm package manager to install the tool 
+
+to install angular CLI
+npm install -g @angular/cli
+
+to check the version run ng version
+
+run the command to intall dummpy base  project 
+ng new my-project-app --strict false
+
+navigate to your project folder
+cd my-project-app
+
+start the server 
+ng serve

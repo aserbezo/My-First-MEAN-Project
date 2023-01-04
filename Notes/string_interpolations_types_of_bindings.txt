@@ -1,0 +1,72 @@
+
+Example to add functionaly on button 
+----------------------------------------------------------------
+in html file 
+<button (click)="onAddPost()">Save Post</button>
+
+in ts file
+export class PostCreateComponent {
+    onAddPost(){
+      alert('Post added !')
+    }
+}
+
+result will be after click the button to display alert message.
+
+-----------------------------------------------------------------
+
+
+string interpolation and one way binding to output input data
+
+----------------------------------------------------------------
+
+in html file
+[value]= "newPost" - one way binding the data 
+#postInput - local referance tag 
+
+
+<h1>Please input </h1>
+<textarea name="text" id="" cols="30" rows="10" [value]= "newPost" #postInput></textarea>
+<hr>
+<button (click)="onAddPost(postInput)">Save Post</button>
+<p>{{newPost}}</p>
+
+in ts file 
+
+export class PostCreateComponent {
+    newPost = 'No CONTENT'
+
+    onAddPost(postInput: HTMLTextAreaElement){
+      console.dir(postInput)
+      this.newPost = postInput.value
+    }
+}
+
+result input data will displayed in paragraph tag 
+
+-----------------------------------------------------------------
+
+two way binding - setting and reading the value 
+
+we need to use ngModel and we need to import FormsModule in app.module.ts from package forms
+and added in imports
+
+html 
+<h1>Please input </h1>
+<textarea name="text" id="" cols="30" rows="10" [(ngModel)]="enteredValue"></textarea>
+<hr>
+<button (click)="onAddPost()">Save Post</button>
+<p>{{newPost}}</p>
+
+tss
+export class PostCreateComponent {
+    enteredValue = ''
+    newPost = 'No CONTENT'
+
+    onAddPost(){
+
+      this.newPost = this.enteredValue
+    }
+}
+-----------------------------------------------------------------------
+

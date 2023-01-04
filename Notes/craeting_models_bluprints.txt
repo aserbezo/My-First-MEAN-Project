@@ -1,0 +1,74 @@
+we are ussing interface is like class but its define how model the post
+
+Post.model.ts
+export interface Post {
+  title: string;
+  content: string;
+}
+
+
+app.componet.ts
+import { Component } from '@angular/core';
+
+import { Post } from './post/post.models'
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  storedPosts: Post[] = []
+
+  onPostAdded(post){
+    this.storedPosts.push(post)
+  }
+}
+
+
+---------------
+
+post-create componet
+import { Component ,EventEmitter, Output} from "@angular/core";
+
+import { Post } from '../post.models'
+
+@Component({
+  selector: 'app-post-create',
+  templateUrl : './post-create.componet.html',
+  styleUrls: ['./post-create.component.css']
+})
+export class PostCreateComponent {
+    enteredTitle = ''
+    enteredContent = ''
+    newPost = 'No CONTENT'
+    @Output() postCreated = new EventEmitter<Post>();
+
+    onAddPost(){
+      const post = {
+        title: this.enteredTitle,
+        content: this.enteredContent
+      }
+      this.postCreated.emit(post)
+    }
+}
+
+---------
+
+import { Component, Input } from "@angular/core";
+import {Post} from '../post.models'
+
+@Component({
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.css']
+})
+export class PostListComponet {
+  // posts = [
+  //   {title: '1', content: '2'},
+  //   {title: '2', content: '4'},
+  //   {title: '3', content: '5'}
+
+  // ]
+  @Input() posts: Post[]= []
+}

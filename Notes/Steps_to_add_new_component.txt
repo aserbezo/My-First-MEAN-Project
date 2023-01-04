@@ -1,0 +1,12 @@
+1. We need to create a subFolder in src/app folder example with name post
+2. Depends of the project you can create more subfolders as needed example poste-create
+3. in post-create folder we need to create the following files:
+- post-create.componet.ts file
+  we are ussing a angular decorator @Component and gibing a selector tag , html and css file created in the same folder.
+  also we are creating a class with name PostCreateComponet which will be exported in NgModule.
+- post-create.componet.html
+- post-create.componet.css
+
+After that we need to add selector tag <app-post-create></app-post-create>  into the app.componet.html
+
+and finaly we need to declare craeted class PostCreateComponet into app.module.ts, we need to import the class and then put into the array @NgModul

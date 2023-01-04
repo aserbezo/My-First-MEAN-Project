@@ -1,0 +1,48 @@
+1 install Angular Material 
+
+to downgrade your angular material run  npm install --save @angular/material@8 --save-exact
+
+--save which will save new dependancies in the same project 
+
+one way to install it is  npm install --save @angular/material
+
+to update your current version of the angular we can run npm install -g @angular/cli
+
+if we are ussing the latest version we can add ng add @angular/material
+
+2. We need to import the necessary api to able to use in the componets 
+as example if we need to choose input area , we need to import  {MatInputModule} from '@angular/material/input' in app.module.ts
+
+
+IMPORT ADDD matInput in textarea
+
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from "@angular/material/form-field";
+
+3. We are ussing differant wrappers around the normal html 
+html example 
+<mat-card>
+<mat-form-field>
+  <textarea  rows="6" matInput [(ngModel)]="enteredValue"></textarea>
+</mat-form-field>
+<button mat-raised-button
+color='primary'
+(click)="onAddPost()">Save Post</button>
+</mat-card>
+<hr>
+<p>{{newPost}}</p>
+
+and we can use css as well 
+
+mat-card{
+  width: 80%;
+  margin: auto;
+}
+mat-form-field,
+textarea{
+  width: 100%;
+}
+
+button{
+ width: 150px;
+}

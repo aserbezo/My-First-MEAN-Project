@@ -1,0 +1,39 @@
+1. Prepere the envirement - install node , Angular/CLI , MongoDB ets 
+
+2. Angular Fronted 
+- Create the UI
+- Presenting the UI
+
+3. Attach Node.js + Express Backend
+- add additional logic than , presenting the UI
+- store and Fetch data
+
+4. Handling Data with MongoDB
+- 
+
+5. Enhancing the app
+- more realisitc and beter app 
+
+6. Add functionity to the app and enhacing the app
+
+- image upload 
+
+- Data Pagination
+
+- Authentication
+
+- add users sign it and sign out 
+
+- Authorization
+
+- Error Handling 
+
+7 Optimization 
+
+- Fronted and Backand
+
+8. Deployment 
+
+- on one server and multiply 
+
+

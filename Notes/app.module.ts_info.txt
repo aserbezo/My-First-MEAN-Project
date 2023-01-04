@@ -1,0 +1,14 @@
+An Angular module class describes how the application parts fit together.
+Every application has at least one Angular module, 
+the root module that you bootstrap to launch the application. 
+You can call it anything you want. 
+The conventional name is AppModule.
+
+LINE 1 to 4 After the import statements, you come to a class adorned with the @NgModule decorator.
+
+The @NgModule decorator identifies AppModule as an Angular module class (also called an NgModule class). 
+@NgModule takes a metadata object that tells Angular how to compile and launch the application.
+
+imports — the BrowserModule that this and every application needs to run in a browser,
+declarations — the application's lone component,
+bootstrap — the root component that Angular creates and inserts into the index.html host web page.

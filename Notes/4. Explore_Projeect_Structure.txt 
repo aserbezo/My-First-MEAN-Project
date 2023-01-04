@@ -1,0 +1,17 @@
+After creating the project with Angular CLI we already have a foldres and files in myapp
+
+1. package.json file
+- check the package json file for dependencies and devdependencies 
+
+also we can check the angular.json and tsconfig.json
+
+2. node_modules 
+- stores all dependencies in that folder  and we are always can recreate that folder with  command = npm i 
+
+3. src folder 
+- where angular app lives in 
+
+- app folder contains the componet of our app , we can add and change html , css and ts componets 
+
+4. index.html file in myapp folder
+- in body we have app-root selector from the app.componet.ts from app folder
