@@ -1,0 +1,25 @@
+We need to send http request 
+
+we need to import HttpClientModule from angular common http  in app.ts in angular
+
+we are ussing post.service.ts 
+
+
+to listen we need to subscribe(), for obsever features build in angular is not need to subscribe
+
+for data , for errors and complite.
+
+// this way we are injecting the httpclient in the function
+constructor(private httpClient: HttpClient){}
+
+ getPosts(){
+   this.httpClient.get<{message: string, posts: Post[]}>('http://localhost:3000/api/posts')
+   .subscribe( (postData)=> {
+    this.posts = postData.posts
+    this.postsUpdated.next([...this.posts])
+   })
+ }
+
+ we will face CORS 
+
+ CROSS ORIGIN RESOURCES Sharing

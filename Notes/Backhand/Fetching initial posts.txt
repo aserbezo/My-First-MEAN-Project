@@ -1,0 +1,26 @@
+in APP.js 
+
+const express = require('express');
+
+// creating the express app
+const app = express()
+
+middleware  to fetch date 
+app.use('/api/posts',(req,res,next)=> {
+  const posts = [
+    {id: 'dadawqwe', title: 'tittt', content: 'dqdqwqdwqdwqdq'},
+    {id: '3231312313', title: 'qwrqewq', content: 'awdadwawa'}
+  ]
+  res.status(200).json({
+    message : 'Posts fetched sucessfully',
+    posts: posts
+  })
+})
+
+// we are exporrting not only the app but also the middleware attached to it.
+module.exports = app;
+
+
+check url address http://localhost:3000/api/posts for the data
+
+we need to configure Angular HTTP Client to fetch the data

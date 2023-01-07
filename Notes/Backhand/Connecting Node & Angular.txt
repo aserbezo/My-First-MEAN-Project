@@ -1,0 +1,31 @@
+
+1 Ng serve is server for developing only the angular lap 
+
+Thow Waays of connectiong Node + angular
+
+----------
+
+Adding The NODE Backend
+
+
+Create server js
+--------------------------------------
+Create a single JS file for Server 
+
+Create server.js in the root folder 
+and now the file can be executed from node with node server.js command 
+
+ // import http package from Node
+const http = require('http');
+
+// we will use the http package to create a new server
+const server = http.createServer( (req,res)=> {
+  res.end("this my first response")
+
+})
+
+// we call server listen , to able listen we need to add a portNumber
+
+server.listen(process.env.PORT || 3000)
+------------------------------------
+
