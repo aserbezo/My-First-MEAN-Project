@@ -1,0 +1,16 @@
+we need to set mongoose to able to connect to MongoDB
+
+npm install --save mongoose
+
+
+1 Add Schema 
+
+Creating Folder name models and inside we are creating a post.js 
+
+PosteModel  created from moongose will be the bridge node js express App to Mongo DB database 
+
+2. we need to import Postmodel in app.js file in express app and add connection to database 
+
+3. We need to set appropriate function the model which we already imported from moongose to able to send and fetch data to it.
+
+4. Pipe
