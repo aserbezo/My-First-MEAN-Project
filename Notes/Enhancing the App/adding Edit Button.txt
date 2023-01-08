@@ -1,0 +1,8 @@
+- create a route for edit   
+
+... spread operator 
+
+_id is imutable and can not be  replaced 
+
+<> generic method  
+his.httpClient.get<{_id: string, title: string , content: string}>('http://localhost:3000/api/posts/' + id)

@@ -1,6 +1,6 @@
-import { Component ,EventEmitter, Output} from "@angular/core";
+import { Component ,EventEmitter, OnInit, Output} from "@angular/core";
 import { NgForm } from "@angular/forms";
-import { throwToolbarMixedModesError } from "@angular/material/toolbar";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 
 import { Post } from '../post.models'
 import { PostsService } from "../post.service";
@@ -10,19 +10,45 @@ import { PostsService } from "../post.service";
   templateUrl : './post-create.componet.html',
   styleUrls: ['./post-create.component.css']
 })
-export class PostCreateComponent {
+export class PostCreateComponent implements OnInit {
     enteredTitle = ''
     enteredContent = ''
-    newPost = 'No CONTENT'
+    post: Post
+    isLoading = false
+    private mode = 'create'
+    private postId: string
 
 
-    constructor (public postService: PostsService) {}
+    constructor (public postService: PostsService, public route: ActivatedRoute) {}
+    // adding functionalaty to check if id is null to able to route
+    ngOnInit(): void {
+        this.route.paramMap.subscribe((paramMap:ParamMap)=> {
+          if(paramMap.has('postId')){
+             this.mode = 'edit'
+             this.postId = paramMap.get('postId')
+             this.isLoading = true
+             this.postService.getPost(this.postId).subscribe(postData=> {
+               this.isLoading = false
+               this.post = {id: postData._id, title: postData.title, content: postData.content}
+             })
+          }else{
+            this.mode = 'create'
+            this.postId = null
+          }
+        })
+    }
 
-    onAddPost(form: NgForm){
+    onSavePost(form: NgForm){
       if (form.invalid){
         return
       }
-      this.postService.addPost(form.value.title,form.value.content)
+      this.isLoading = true
+      if(this.mode === 'create'){
+        this.postService.addPost(form.value.title,form.value.content)
+      }else{
+        this.postService.updatePost(this.postId,form.value.title,form.value.content)
+      }
+
       form.resetForm()
     }
 }

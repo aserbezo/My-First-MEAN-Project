@@ -1,0 +1,58 @@
+We need to add app-routing.module.ts 
+
+we declaring core and RouterModule + the component 
+
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router"
+import { PostCreateComponent } from "./post/post-create/post-create.component";
+import { PostListComponet } from "./post/post-list/post-list.component";
+
+After that we are adding the routes ussing path 
+
+const routes: Routes = [
+  {path: '', component: PostListComponet },
+  {path: 'create', component: PostCreateComponent}
+]
+
+and the we are exporting 
+
+@NgModule({
+imports: [RouterModule.forRoot(routes)],
+exports: [RouterModule]
+
+})
+
+export class AppRoutingModule {
+
+}
+
+DO NOT FORGET TO IMPORT AppRoutingModule in app.module.ts and set the app.module.html with routes  router-outlet
+
+<app-header></app-header>
+<main>
+  <router-outlet></router-outlet>
+</main>
+
+
+we can add routerLink in header 
+
+<mat-toolbar color='primary'>
+<span><a routerLink="/">MyMessages</a></span>
+<span class="spacer"></span>
+<ul>
+  <li>
+    <a mat-button routerLink="/create" routerLinkActive="mat-accent"> New post</a>
+  </li>
+</ul>
+</mat-toolbar>
+
+
+At this point is only client side rendering backhand is not aware of that routes 
+
+the backhand app.js middleware routes for add and geting posts are same "/api/posts"
+
+Client and Server side Routing 
+
+Client side routing  - Reading URL and rendering parts of the page , we do not exchange data
+
+Server side  routing - handling incoming request and sending back something different , exchange data 
