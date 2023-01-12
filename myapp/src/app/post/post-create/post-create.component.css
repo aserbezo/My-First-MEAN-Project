@@ -11,3 +11,15 @@ button{
  width: 150px;
 }
 
+input[type='file'] {
+  visibility: hidden;
+}
+
+.image-Preview {
+  height: 5rem;
+  margin:  1rem 0;
+}
+
+.image-Preview img {
+  height: 100%;
+}

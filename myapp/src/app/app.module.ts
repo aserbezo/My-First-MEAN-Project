@@ -2,7 +2,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+// we can change from template driven appoach to Reactive with replacing FormsModule with ReactiveFormsModule
+import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button'
 import {MatCardModule} from '@angular/material/card';
@@ -35,7 +36,7 @@ import { PostListComponet } from './post/post-list/post-list.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatFormFieldModule,
