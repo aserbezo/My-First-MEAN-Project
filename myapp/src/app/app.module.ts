@@ -13,6 +13,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import {MatPaginatorModule} from '@angular/material/paginator'
 
 
 // app imports
@@ -45,6 +46,7 @@ import { PostListComponet } from './post/post-list/post-list.component';
     MatToolbarModule,
     MatExpansionModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
     HttpClientModule
 
 

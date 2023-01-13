@@ -75,17 +75,27 @@ router.put("/:id",multer({storage:storage}).single('image'),(req,res,next)=>{
 
 // we can app.use but can change to app.get
 router.get('',(req,res,next)=> {
-  // const posts = [
-  //   {id: 'dadawqwe', title: 'tittt', content: 'dqdqwqdwqdwqdq'},
-  //   {id: '3231312313', title: 'qwrqewq', content: 'awdadwawa'}
-  // ]
-  Post.find()
+  // adding + to convert to integer because in URL the are string
+  const pageSize = +req.query.pageSize
+  const currentPage = +req.query.page
+  const postQuary = Post.find()
+  let fetchedPosts
+  if(pageSize && currentPage){
+    postQuary
+    .skip(pageSize * (currentPage - 1))
+    .limit(pageSize)
+  }
+  postQuary
   .then(documents=> {
+    fetchedPosts = documents
     //console.log(documents)
-
+    return Post.count()
+  })
+  .then(count=> {
     res.status(200).json({
       message : 'Posts fetched sucessfully',
-      posts: documents
+      posts: fetchedPosts,
+      maxPosts : count
     })
   })
 })
