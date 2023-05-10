@@ -26,22 +26,34 @@ export class AuthService {
   }
 
   createUser(email:string,password:string){
-    const autData : AuthData = {email: email, password: password}
-    this.http.post("http://localhost:3000/api/user/signup", autData)
-    .subscribe( response=> {
-      console.log(response)
-    })
+
+    const authData : AuthData = {email: email, password: password}
+    console.log('CreateUser before sending post')
+    console.log(authData)
+    this.http.post("http://localhost:3000/api/user/signup", authData).subscribe( data=> {
+       console.log(data)
+       this.router.navigate(['/'])
+     })
   }
+
+
   login(email: string, password: string){
-    const autData : AuthData = {email: email, password: password}
-    this.http.post<{token: string, expiresIn: number}>("http://localhost:3000/api/user/login", autData)
-    .subscribe(response => {
+    // const authData : AuthData = {email: email, password: password}
+    // console.log(authData)
+    // this.http.post("http://localhost:3000/api/user/login", authData).subscribe( data =>{
+    //   console.log(data)
+    // })
+
+    // this.router.navigate(['/'])
+    const authData : AuthData = {email: email, password: password}
+    this.http.post<{token: string, expiresIn: number}>("http://localhost:3000/api/user/login", authData)
+   .subscribe(response => {
       //console.log(response)
       const token = response.token
       this.token = token
       if(token){
       const expiresInDuration = response.expiresIn
-      //console.log(expiresInDuration)
+      console.log(expiresInDuration)
       this.setAuthTimer(expiresInDuration)
       this.isAuthenticated = true
       this.authStatusListenar.next(true)
@@ -51,6 +63,7 @@ export class AuthService {
       this.saveAuthData(token,expirationDate)
       this.router.navigate(['/'])
       }
+
     })
   }
 

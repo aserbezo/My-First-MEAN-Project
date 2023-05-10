@@ -5,6 +5,7 @@ import  { map } from "rxjs/operators"
 import { Post } from "./post.models";
 import { Router } from "@angular/router";
 
+const BACKEND_URL = 'http://localhost:3000/api/posts'
 
 
 @Injectable({
@@ -19,7 +20,7 @@ constructor(private httpClient: HttpClient, private router : Router ){}
 
  getPosts(postsPerPage: number, currentPage: number){
    const querryParams = `?pageSize=${postsPerPage}&page=${currentPage}`
-   this.httpClient.get<{message: string, posts: any, maxPosts: number}>('http://localhost:3000/api/posts'+ querryParams)
+   this.httpClient.get<{message: string, posts: any, maxPosts: number}>(BACKEND_URL+ querryParams)
    .pipe
    (map((postData)=>{
     return {posts:postData.posts.map(post=> {
@@ -27,12 +28,14 @@ constructor(private httpClient: HttpClient, private router : Router ){}
         id: post._id,
         title : post.title,
         content: post.content,
-        imagePath : post.imagePath
+        imagePath : post.imagePath,
+        creator: post.creator
 
       }
     }), maxPosts: postData.maxPosts}
    }))
    .subscribe( (transformedPostData)=> {
+     console.log(transformedPostData)
     this.posts = transformedPostData.posts
     this.postsUpdated.next({posts:[...this.posts],postCount: transformedPostData.maxPosts} )
    })
@@ -52,7 +55,7 @@ getPost (id:string){
    postData.append('title', title)
    postData.append('content', content)
    postData.append('image',image, title)
-   this.httpClient.post<{message:string, post: Post}>('http://localhost:3000/api/posts', postData)
+   this.httpClient.post<{message:string, post: Post}>(BACKEND_URL, postData)
    .subscribe((responseData)=>{
     //  const post: Post = {id: responseData.post.id, title : title, content:content, imagePath: responseData.post.imagePath}
     //   this.posts.push(post)
@@ -83,7 +86,7 @@ updatePost(id:string, title:string, content:string, image: File | string){
 
   }
   console.log(postData)
-  this.httpClient.put('http://localhost:3000/api/posts/' + id, postData)
+  this.httpClient.put(BACKEND_URL + id, postData)
   .subscribe(response=>{
     // const updatePosts = [...this.posts]
     // const oldPostIndex = updatePosts.findIndex(p=> p.id === id)
@@ -102,7 +105,7 @@ updatePost(id:string, title:string, content:string, image: File | string){
 }
 
  deletePost(postId:string){
-   return  this.httpClient.delete('http://localhost:3000/api/posts/' + postId)
+   return  this.httpClient.delete(BACKEND_URL + postId)
   //  .subscribe(()=>{
   //    console.log("Deleted!")
   //    const updatedPosts = this.posts.filter(post=> post.id !== postId)

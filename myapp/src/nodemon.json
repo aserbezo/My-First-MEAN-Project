@@ -1,0 +1,6 @@
+{
+  "env": {
+    "Mongo_ATLAS_PW" : "waXtyr-6jekci-pifbed",
+    "JWT_KEY": "secret_this_shuld_be_longer"
+  }
+}

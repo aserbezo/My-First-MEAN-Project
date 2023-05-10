@@ -6,7 +6,8 @@ const moongose = require('mongoose')
 const postSchema = moongose.Schema({
   title : {type: String, require:true},
   content: {type: String, require:true},
-  imagePath: {type:String, require:true}
+  imagePath: {type:String, require:true},
+  creator: {type: moongose.Schema.Types.ObjectId,ref: "User", require: true}
 })
 
 

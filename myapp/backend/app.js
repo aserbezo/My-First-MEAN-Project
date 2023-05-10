@@ -4,18 +4,24 @@ const path = require('path')
 const postsRoutes = require('./routes/posts')
 const userRoutes = require("./routes/user")
 
+// pass powkyt-dykMym-7mogki
+// waXtyr-6jekci-pifbed
 // creating the express app
 const app = express()
 // connect to MongoDB from Express app
 const moongoose = require('mongoose');
 const post = require('./models/post');
-moongoose.connect('mongodb+srv://Admin:SwXPCOC0SNqlWW6X@project.xsqgrzt.mongodb.net/node-angular')
+
+moongoose.set('strictQuery', false);
+moongoose.connect('mongodb+srv://Admin:'+ 'waXtyr-6jekci-pifbed' +'@cluster0.trxxf1z.mongodb.net/?retryWrites=true&w=majority')
+
 .then(()=> {
   console.log('Connected to the Database !')
 })
 .catch(()=>{
   console.log('Connection failed !')
 })
+
 
 
 // bodyparse midlleware
