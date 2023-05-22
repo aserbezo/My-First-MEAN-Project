@@ -21,8 +21,8 @@ exports.createUser = (req,res,next) => {
       })
     })
   }catch(err){
-    res.status(501).json({
-      error : err
+    res.status(500).json({
+        message: 'Invalid authetication credentials!'
     })
   }
     //console.log(req.body)
@@ -60,7 +60,7 @@ exports.userLogin = (req,res,next)=> {
   User.findOne({ email: req.body.email})
   .then(user=> {
     //console.log(user)
-    if(!user){s
+    if(!user){
       return res.status(401).json({
         message: 'Auth Failed'
       })
@@ -93,7 +93,7 @@ exports.userLogin = (req,res,next)=> {
   .catch(err=>{
    // console.log(err)
     return res.status(401).json({
-    message : 'Auth Failed!'
+    message : 'Invalid authentication credentials !'
     })
   })
 

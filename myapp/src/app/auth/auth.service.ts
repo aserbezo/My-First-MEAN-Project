@@ -28,12 +28,13 @@ export class AuthService {
   createUser(email:string,password:string){
 
     const authData : AuthData = {email: email, password: password}
-    console.log('CreateUser before sending post')
-    console.log(authData)
-    this.http.post("http://localhost:3000/api/user/signup", authData).subscribe( data=> {
-       console.log(data)
-       this.router.navigate(['/'])
-     })
+    //console.log('CreateUser before sending post')
+    //console.log(authData)
+    this.http.post("http://localhost:3000/api/user/signup", authData).subscribe(()=> {
+      this.router.navigate(["/"])
+    },error => {
+      this.authStatusListenar.next(false)
+    })
   }
 
 
@@ -64,6 +65,8 @@ export class AuthService {
       this.router.navigate(['/'])
       }
 
+    },error=> {
+      this.authStatusListenar.next(false)
     })
   }
 

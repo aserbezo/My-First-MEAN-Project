@@ -23,7 +23,11 @@ exports.createPost = (req,res,next)=>{
       imagePath: createdPost.imagePath
     }
   })
-
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: 'Created Post Failed !'
+    })
   })
 }
 
@@ -49,6 +53,11 @@ exports.updatePost = (req,res,next)=>{
     }else{
       res.status(401).json({message:"Not Authorize!"})
     }
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: 'Could not update post !'
+    })
   })
 }
 
@@ -76,6 +85,11 @@ exports.getPosts = (req,res,next)=> {
       maxPosts : count
     })
   })
+  .catch(error => {
+    res.status(500).json({
+      message: 'Unable to get the posts !'
+    })
+  })
 }
 
 exports.getPost = (req,res,next)=> {
@@ -85,6 +99,11 @@ exports.getPost = (req,res,next)=> {
     }else{
       res.status(404).json({message: "Post not found !"})
     }
+  })
+  .catch(error => {
+    res.status(500).json({
+      message: 'Unable to get the posts !'
+    })
   })
 }
 

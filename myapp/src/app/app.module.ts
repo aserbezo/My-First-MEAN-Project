@@ -17,6 +17,9 @@ import { HeaderComponent } from './header/header.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AngularMaterialModule } from './angular-material.module';
 import { PostModule } from './post/post_module';
+import { ErrorIntercepter } from './error-interceptor';
+import {MatDialogModule} from '@angular/material/dialog';
+import { ErrorComponet } from './error/error.componet';
 //import { AuthModule } from './auth/auth.module';
 
 
@@ -29,6 +32,7 @@ import { PostModule } from './post/post_module';
   declarations: [
     AppComponent,
     HeaderComponent,
+    ErrorComponet
 
 
   ],
@@ -38,13 +42,16 @@ import { PostModule } from './post/post_module';
     BrowserAnimationsModule,
     HttpClientModule,
     AngularMaterialModule,
-    PostModule
+    PostModule,
+    MatDialogModule
    // AuthModule
 
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
+    {provide:HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide:HTTP_INTERCEPTORS, useClass: ErrorIntercepter, multi: true}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ErrorComponet]
 })
 export class AppModule { }
