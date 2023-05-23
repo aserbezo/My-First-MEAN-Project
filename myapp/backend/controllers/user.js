@@ -12,19 +12,18 @@ exports.createUser = (req,res,next) => {
     email: req.body.email,
     password : hash_password
   })
-
-  try{
-    user.save().then(result => {
+  user.save().then(result => {
       res.status(201).json({
         message: 'User is created !',
         result: result
       })
-    })
-  }catch(err){
-    res.status(500).json({
+    }).catch(error=> {
+      res.status(500).json({
         message: 'Invalid authetication credentials!'
     })
-  }
+    })
+
+
     //console.log(req.body)
     //console.log(` Backend ${user}`)
     //user.save()
@@ -90,7 +89,7 @@ exports.userLogin = (req,res,next)=> {
     })
 
   })
-  .catch(err=>{
+  .catch(error=>{
    // console.log(err)
     return res.status(401).json({
     message : 'Invalid authentication credentials !'
