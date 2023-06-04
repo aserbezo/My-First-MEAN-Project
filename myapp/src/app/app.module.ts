@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 // app imports
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-
+import {MatIconModule,MatIconRegistry} from '@angular/material/icon';
 
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AngularMaterialModule } from './angular-material.module';
@@ -43,7 +43,8 @@ import { ErrorComponet } from './error/error.componet';
     HttpClientModule,
     AngularMaterialModule,
     PostModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule,
    // AuthModule
 
   ],

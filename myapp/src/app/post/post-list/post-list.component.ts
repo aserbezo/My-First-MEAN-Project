@@ -50,6 +50,7 @@ export class PostListComponet implements OnInit, OnDestroy{
   }
 
   onDelete(postId: string){
+    console.log('Delete')
     this.isLoading = true
     this.postService.deletePost(postId).subscribe(()=> {
       this.postService.getPosts(this.postsPerPage, this.currentPage)
